@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bh4wox5t7rjcn"]
+
+[ext_resource type="PackedScene" uid="uid://dfatdjyy2bx8" path="res://scenes/interaction_area.tscn" id="1_abqhh"]
+[ext_resource type="Texture2D" uid="uid://co42jgb14ccux" path="res://icon.svg" id="1_nh2m4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_abqhh"]
+size = Vector2(120, 120)
+
+[node name="NPC" type="CharacterBody2D"]
+
+[node name="InterationArea" parent="." instance=ExtResource("1_abqhh")]
+collision_layer = 1
+collision_mask = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_nh2m4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_abqhh")
