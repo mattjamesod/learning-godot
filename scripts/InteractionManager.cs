@@ -15,16 +15,16 @@ public partial class InteractionManager : Node {
 	}
 	
 	public override void _Process(double delta) {
-		if (this.InteractionsInRange.Count <= 0) { 
-			this.Label.Hide();
-			return;
+		var interactable = this.InteractionsInRange.FirstOrDefault();
+		ShowOrHideInteractionLabel(interactable);
+	}
+	
+	public override void _Input(InputEvent @event) {
+		var interactable = this.InteractionsInRange.FirstOrDefault();
+		if (@event.IsActionPressed("interact") && interactable != null) {
+			GD.Print("Interacting...");
+			interactable.Interact();
 		}
-		
-		var interactable = this.InteractionsInRange.First();
-		
-		this.Label.Text = "[E] " + interactable.LabelText;
-		this.Label.GlobalPosition = interactable.GlobalPosition;
-		this.Label.Show();
 	}
 	
 	public void Register(Interactable interactable) {
@@ -33,5 +33,23 @@ public partial class InteractionManager : Node {
 	
 	public void Deregister(Interactable interactable) {
 		this.InteractionsInRange.Remove(interactable);
+	}
+	
+	private void ShowOrHideInteractionLabel(Interactable interactable) {
+		if (interactable == null) { 
+			this.Label.Hide();
+			return;
+		}
+		
+		this.BuildLabelForInteractable(interactable);
+		this.Label.Show();
+	}
+	
+	private void BuildLabelForInteractable(Interactable interactable) {
+		this.Label.Text = "[E] " + interactable.LabelText;
+		this.Label.GlobalPosition = new(
+			interactable.GlobalPosition.X - (this.Label.Size.X / 2),
+			interactable.GlobalPosition.Y + 75
+		);
 	}
 }

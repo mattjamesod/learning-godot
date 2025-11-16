@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_abqhh"]
 size = Vector2(120, 120)
 
-[node name="NPC" type="CharacterBody2D"]
+[node name="NPC" type="StaticBody2D"]
 
 [node name="InterationArea" parent="." instance=ExtResource("1_abqhh")]
 collision_layer = 1

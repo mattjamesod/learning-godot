@@ -1,13 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://cc4gua350aa04"]
+[gd_scene load_steps=4 format=3 uid="uid://cc4gua350aa04"]
 
 [ext_resource type="PackedScene" uid="uid://c7gricc1kkj2t" path="res://scenes/player_character.tscn" id="1_86vcg"]
+[ext_resource type="PackedScene" uid="uid://bq01q4ql3dbkk" path="res://scenes/interaction_manager.tscn" id="1_i1ndp"]
 [ext_resource type="PackedScene" uid="uid://bh4wox5t7rjcn" path="res://scenes/npc.tscn" id="3_fdpdn"]
 
 [node name="Game" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_86vcg")]
 
-[node name="Camera2D" type="Camera2D" parent="."]
-
 [node name="NPC" parent="." instance=ExtResource("3_fdpdn")]
 position = Vector2(-693, -286)
+
+[node name="InteractionManager" parent="." instance=ExtResource("1_i1ndp")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
